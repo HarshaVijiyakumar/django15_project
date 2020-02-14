@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container">
+    <div class="row">
+        <!--create-->
+        <div class="container">
+            <br/>
+            <nav class="navbar navbar-light bg-light">
+                <h3>Create new post. </h3>
+            </nav>
+            <br/>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{ form }}
+                <p></p>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
+

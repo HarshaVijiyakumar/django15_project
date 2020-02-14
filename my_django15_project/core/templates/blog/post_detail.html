@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container">
+    <div class="row">
+
+        <div class="container">
+            <br/>
+            <nav class="navbar navbar-light bg-light">
+                <h3>{{ get_data_by_id.title }}</h3>
+            </nav>
+            <br/>
+
+            <p>{{ get_data_by_id.text|linebreaksbr }}</p>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

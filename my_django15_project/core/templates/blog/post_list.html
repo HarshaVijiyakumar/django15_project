@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container">
+    <div class="row">
+        <!--        Get All Data-->
+        <div class="container">
+            <br/>
+            <nav class="navbar navbar-light bg-light">
+                <h3>Get all data</h3>
+            </nav>
+            <br/>
+            <div class="row row-cols-3">
+                {% for all_data in get_all_data %}
+                <div class="col">
+                    <div class="post shadow p-3 mb-5 bg-white rounded">
+                        <h4>{{ all_data.title }}</h4>
+                        <p>{{ all_data.text|linebreaksbr }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!--Get Data By Author 2-->
+        <div class="container">
+            <br/>
+            <nav class="navbar navbar-light bg-light">
+                <h3>Get data by Author 2</h3>
+            </nav>
+            <br/>
+            <div class="row row-cols-3">
+                {% for data_by_id in get_data_by_id %}
+                <div class="col">
+                    <div class="post shadow p-3 mb-5 bg-white rounded">
+                        <h4>{{ data_by_id.title }}</h4>
+                        <p>{{ data_by_id.text|linebreaksbr }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!--Get Data By primary key-->
+        <div class="container">
+            <br/>
+            <nav class="navbar navbar-light bg-light">
+                <h3>Get and view each record by primary key.
+                    <small class="text-muted">(Preform the operation by clicking on each post)</small>
+                </h3>
+            </nav>
+            <br/>
+            <div class="row row-cols-3">
+                {% for all_data in get_all_data %}
+                <div class="col">
+                    <div class="post shadow p-3 mb-5 bg-white rounded">
+                        <h4><a href="{% url 'post_detail' pk=all_data.pk %}">{{ all_data.title }}</a></h4>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!--create-->
+        <div class="container">
+            <br/>
+            <nav class="navbar navbar-light bg-light">
+                <h3>Create, Update, Delete and View New post. </h3>
+                <a href="{% url 'post_new' %}" class="btn btn-dark btn-lg " tabindex="-1" role="button">Create Post</a>
+            </nav>
+            <br/>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Published date</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Text</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for a in get_all_post2_data %}
+                <tr>
+                    <td>{{ a.published_date }}</td>
+
+                    <td>{{ a.author.username }}</td>
+                    <td>{{ a.title }}</td>
+                    <td>{{ a.text }}</td>
+                    <td>
+                        {% if user.id == a.author_id %}
+                        <a href="{% url 'post_edit' pk=a.pk %}" class="btn btn-dark btn-sm " tabindex="-1" role="button"
+                           style="margin:2px">Edit</a><a href="{% url 'post_delete' pk=a.pk %}"
+                                                         class="btn btn-dark btn-sm " tabindex="-1" role="button"
+                                                         style="margin:2px">Delete</a>
+                        {% else %}
+                        Access Denied
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
+

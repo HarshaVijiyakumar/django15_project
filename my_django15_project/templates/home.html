@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="card text-center">
+
+    <div class="card-body">
+        <h5 class="card-title">Welcome to My App</h5>
+        <p class="card-text">CRUD concept using Python Django.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+
+        <a href="{% url 'signup' %}" class="btn btn-primary">Signup</a>
+    </div>
+
+</div>
+
+
+
+<!--<a href="{% url 'post_list' %}"> Click to see CRUD Concept </a>-->
+
+{% endblock %}
